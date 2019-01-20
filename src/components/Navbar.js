@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { ButtonContainer } from "./Button";
 import logo from "../logo.svg";
+import { ProductConsumer } from "../context";
 
 class Navbar extends Component {
   state = {};
@@ -23,13 +24,19 @@ class Navbar extends Component {
           </li>
         </ul>
         <Link to="/cart" className="ml-auto">
-          <ButtonContainer>
-            <span className="mr-2">
-              <i className="fas fa-cart-plus" />
-            </span>
-            <StyledBadge className="badge badge-pill mr-2">1</StyledBadge>
-            My cart
-          </ButtonContainer>
+          <ProductConsumer>
+            {state => (
+              <ButtonContainer>
+                <span className="mr-2">
+                  <i className="fas fa-cart-plus" />
+                </span>
+                <StyledBadge className="badge badge-pill mr-2">
+                  {state.cart.length}
+                </StyledBadge>
+                My cart
+              </ButtonContainer>
+            )}
+          </ProductConsumer>
         </Link>
       </NavWrapper>
     );
