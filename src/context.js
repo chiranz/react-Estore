@@ -51,8 +51,6 @@ class ProductProvider extends Component {
         }
       );
     }
-
-    console.log("this is a decrement method");
   };
 
   removeItem = id => {
